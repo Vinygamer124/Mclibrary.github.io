@@ -40,29 +40,6 @@ main h2 {
     margin-top: 0;
 }
 
-main a {
-    display: inline-block;
-    margin: 10px 0;
-    padding: 10px 20px;
-    background-color: #4285F4; /* Google Blue */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-main a:hover {
-    background-color: #357AE8;
-}
-
-main a.discord {
-    background-color: #7289DA; /* Discord Purple */
-}
-
-main a.discord:hover {
-    background-color: #5B6EAE;
-}
-
 footer {
     background-color: #333;
     color: white;
