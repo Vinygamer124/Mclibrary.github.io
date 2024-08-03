@@ -26,7 +26,7 @@ passport.deserializeUser((obj, done) => {
 passport.use(new GoogleStrategy({
     clientID: 'GOOGLE_CLIENT_ID',
     clientSecret: 'GOOGLE_CLIENT_SECRET',
-    callbackURL: '/auth/google/callback'
+    callbackURL: 'http://localhost:3000/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
 }));
@@ -35,7 +35,7 @@ passport.use(new GoogleStrategy({
 passport.use(new DiscordStrategy({
     clientID: 'DISCORD_CLIENT_ID',
     clientSecret: 'DISCORD_CLIENT_SECRET',
-    callbackURL: '/auth/discord/callback',
+    callbackURL: 'http://localhost:3000/auth/discord/callback',
     scope: ['identify', 'email']
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
