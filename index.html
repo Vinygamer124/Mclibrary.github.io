@@ -17,11 +17,11 @@
                 <li><a href="#">Store</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-            <div class="auth-buttons">
-                <button onclick="openPopup('loginPopup')">Log in</button>
-                <button onclick="openPopup('registerPopup')">Register</button>
-            </div>
         </nav>
+        <div class="auth-buttons">
+            <button onclick="openPopup('loginPopup')">Login</button>
+            <button onclick="openPopup('registerPopup')">Register</button>
+        </div>
     </header>
     <main>
         <section>
@@ -35,7 +35,7 @@
         <p>&copy; 2024 Minecraft Server. All rights reserved.</p>
     </footer>
 
-    <!-- Pop-up Đăng ký -->
+    <!-- Pop-up Register -->
     <div id="registerPopup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup('registerPopup')">&times;</span>
@@ -49,7 +49,7 @@
                 
                 <label for="password">Password (required)</label>
                 <input type="password" id="password" name="password" required>
-                <button type="button" onclick="togglePassword('password')">Show/Hide password</button>
+                <button type="button" onclick="togglePassword('password')">Show/Hide Password</button>
 
                 <label for="terms">
                     <input type="checkbox" id="terms" name="terms" required>
@@ -61,30 +61,30 @@
         </div>
     </div>
 
-    <!-- Pop-up Đăng nhập -->
+    <!-- Pop-up Login -->
     <div id="loginPopup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup('loginPopup')">&times;</span>
-            <h2>Log in</h2>
+            <h2>Login</h2>
             <form id="loginForm" action="/login" method="post">
-                <label for="loginEmail">Your name or email address</label>
+                <label for="loginEmail">Your username or email address</label>
                 <input type="email" id="loginEmail" name="loginEmail" required>
                 
                 <label for="loginPassword">Password</label>
                 <input type="password" id="loginPassword" name="loginPassword" required>
-                <button type="button" onclick="togglePassword('loginPassword')">Show/Hide password</button>
+                <button type="button" onclick="togglePassword('loginPassword')">Show/Hide Password</button>
 
                 <label for="rememberMe">
                     <input type="checkbox" id="rememberMe" name="rememberMe">
                     Keep me logged in
                 </label>
 
-                <button type="submit">Log in</button>
-                <p>Do not have an account? <a href="#" onclick="openPopup('registerPopup')">Register now</a></p>
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="#" onclick="openPopup('registerPopup')">Register now</a></p>
             </form>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
