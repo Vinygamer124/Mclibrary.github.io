@@ -18,10 +18,6 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <div class="auth-buttons">
-            <button onclick="openPopup('registerPopup')">Register</button>
-            <button onclick="openPopup('loginPopup')">Login</button>
-        </div>
     </header>
     <main>
         <section>
@@ -30,61 +26,14 @@
             <p>Status: Online</p>
             <p>Players: 20/100</p>
         </section>
+        <section>
+            <h2>Login</h2>
+            <a href="/auth/google">Login with Google</a><br>
+            <a href="/auth/discord">Login with Discord</a>
+        </section>
     </main>
     <footer>
         <p>&copy; 2024 Minecraft Server. All rights reserved.</p>
     </footer>
-
-    <!-- Pop-up Register -->
-    <div id="registerPopup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup('registerPopup')">&times;</span>
-            <h2>Register</h2>
-            <form id="registerForm" action="/register" method="post">
-                <label for="username">Username (required)</label>
-                <input type="text" id="username" name="username" required>
-                
-                <label for="email">Email (required)</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="password">Password (required)</label>
-                <input type="password" id="password" name="password" required>
-                <button type="button" onclick="togglePassword('password')">Show/Hide Password</button>
-
-                <label for="terms">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    I agree to the terms and privacy policy
-                </label>
-
-                <button type="submit">Register</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Pop-up Login -->
-    <div id="loginPopup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup('loginPopup')">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm" action="/login" method="post">
-                <label for="loginEmail">Your username or email address</label>
-                <input type="email" id="loginEmail" name="loginEmail" required>
-                
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" name="loginPassword" required>
-                <button type="button" onclick="togglePassword('loginPassword')">Show/Hide Password</button>
-
-                <label for="rememberMe">
-                    <input type="checkbox" id="rememberMe" name="rememberMe">
-                    Keep me logged in
-                </label>
-
-                <button type="submit">Login</button>
-                <p>Don't have an account? <a href="#" onclick="openPopup('registerPopup')">Register now</a></p>
-            </form>
-        </div>
-    </div>
-
-    <script src="scripts.js"></script>
 </body>
 </html>
