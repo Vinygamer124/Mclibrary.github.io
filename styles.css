@@ -11,7 +11,6 @@ header {
     color: white;
     padding: 1em 0;
     text-align: center;
-    position: relative;
 }
 
 nav ul {
@@ -32,25 +31,6 @@ nav ul li a {
     font-weight: bold;
 }
 
-.auth-buttons {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.auth-buttons button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.auth-buttons button:hover {
-    background-color: #45a049;
-}
-
 main {
     padding: 2em;
     text-align: center;
@@ -58,6 +38,29 @@ main {
 
 main h2 {
     margin-top: 0;
+}
+
+main a {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #4285F4; /* Google Blue */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+main a:hover {
+    background-color: #357AE8;
+}
+
+main a.discord {
+    background-color: #7289DA; /* Discord Purple */
+}
+
+main a.discord:hover {
+    background-color: #5B6EAE;
 }
 
 footer {
@@ -68,40 +71,4 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
-}
-
-.popup {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-}
-
-.popup-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
