@@ -8,4 +8,5 @@ function closePopup(popupId) {
 
 function togglePassword(fieldId) {
     const field = document.getElementById(fieldId);
-    field.type = (field.type === 'password')
+    field.type = (field.type === 'password') ? 'text' : 'password';
+}
