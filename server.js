@@ -1,14 +1,10 @@
 const express = require('express');
 const session = require('express-session');
-const bodyParser = require('body-parser'); // Thêm dòng này
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const DiscordStrategy = require('passport-discord').Strategy;
 
 const app = express();
-
-// Cấu hình body-parser middleware để xử lý dữ liệu form
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure session middleware
 app.use(session({ secret: 'your-secret-key', resave: false, saveUninitialized: true }));
@@ -68,21 +64,8 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-// Route để xử lý form đăng ký
-app.post('/register', (req, res) => {
-    // Xử lý dữ liệu đăng ký
-    const { username, email, password, terms } = req.body;
-    console.log('User registered with:', { username, email, password, terms });
-    res.send('Đăng ký thành công!');
-});
-
-// Route để xử lý form đăng nhập
-app.post('/login', (req, res) => {
-    // Xử lý dữ liệu đăng nhập
-    const { loginEmail, loginPassword } = req.body;
-    console.log('User logged in with:', { loginEmail, loginPassword });
-    res.send('Đăng nhập thành công!');
-});
+// Serve static files
+app.use(express.static(__dirname));
 
 // Start server
 app.listen(3000, () => {
