@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
+const cors = require('cors');  // Thêm dòng này
 const app = express();
 const port = 3000;
 
@@ -18,6 +19,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());  // Thêm dòng này
 app.use(express.static('public'));
 
 app.post('/register', async (req, res) => {
