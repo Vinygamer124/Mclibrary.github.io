@@ -1,73 +1,78 @@
 const express = require('express');
-const session = require('express-session');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const DiscordStrategy = require('passport-discord').Strategy;
-
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 const app = express();
+const port = 3000;
 
-// Configure session middleware
-app.use(session({ secret: 'your-secret-key', resave: false, saveUninitialized: true }));
+mongoose.connect('mongodb://localhost:27017/minecraftServer', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Serialize user info
-passport.serializeUser((user, done) => {
-    done(null, user);
+const userSchema = new mongoose.Schema({
+    username: String,
+    email: String,
+    password: String,
+    verified: Boolean
 });
 
-passport.deserializeUser((obj, done) => {
-    done(null, obj);
+const User = mongoose.model('User', userSchema);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+app.post('/register', async (req, res) => {
+    const { username, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, email, password: hashedPassword, verified: false });
+    await newUser.save();
+    
+    // Gửi email xác nhận
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'your-email@gmail.com',
+            pass: 'your-email-password'
+        }
+    });
+
+    const mailOptions = {
+        from: 'your-email@gmail.com',
+        to: email,
+        subject: 'Email Verification',
+        text: 'Please verify your email by clicking on the following link: http://localhost:3000/verify-email?email=' + email
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    res.send('Registration successful! Please check your email to verify your account.');
 });
 
-// Configure Google OAuth2 strategy
-passport.use(new GoogleStrategy({
-    clientID: 'GOOGLE_CLIENT_ID',
-    clientSecret: 'GOOGLE_CLIENT_SECRET',
-    callbackURL: 'http://localhost:3000/auth/google/callback'
-}, (accessToken, refreshToken, profile, done) => {
-    return done(null, profile);
-}));
-
-// Configure Discord strategy
-passport.use(new DiscordStrategy({
-    clientID: 'DISCORD_CLIENT_ID',
-    clientSecret: 'DISCORD_CLIENT_SECRET',
-    callbackURL: 'http://localhost:3000/auth/discord/callback',
-    scope: ['identify', 'email']
-}, (accessToken, refreshToken, profile, done) => {
-    return done(null, profile);
-}));
-
-// Google authentication routes
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
-    res.redirect('/');
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (user && await bcrypt.compare(password, user.password)) {
+        if (user.verified) {
+            res.send('Login successful!');
+        } else {
+            res.send('Please verify your email before logging in.');
+        }
+    } else {
+        res.send('Invalid email or password.');
+    }
 });
 
-// Discord authentication routes
-app.get('/auth/discord', passport.authenticate('discord'));
-app.get('/auth/discord/callback', passport.authenticate('discord', { failureRedirect: '/' }), (req, res) => {
-    res.redirect('/');
+app.get('/verify-email', async (req, res) => {
+    const { email } = req.query;
+    await User.updateOne({ email }, { verified: true });
+    res.send('Email verified successfully! You can now log in.');
 });
 
-// Logout route
-app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-});
-
-// Basic route
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
-
-// Serve static files
-app.use(express.static(__dirname));
-
-// Start server
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });
