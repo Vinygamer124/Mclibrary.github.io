@@ -1,3 +1,4 @@
+/* Existing styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -40,27 +41,36 @@ main h2 {
     margin-top: 0;
 }
 
-main a {
+main form {
     display: inline-block;
     margin: 10px 0;
     padding: 10px 20px;
-    background-color: #4285F4; /* Google Blue */
-    color: white;
-    text-decoration: none;
+    background-color: white;
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main form input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+main form button {
+    padding: 10px 20px;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-main a:hover {
+main form button:hover {
     background-color: #357AE8;
-}
-
-main a.discord {
-    background-color: #7289DA; /* Discord Purple */
-}
-
-main a.discord:hover {
-    background-color: #5B6EAE;
 }
 
 footer {
