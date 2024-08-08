@@ -4,12 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatOutput = document.getElementById('chat-output');
     const sendButton = document.getElementById('send-button');
 
+    const responses = {
+        "hello": "Hi there! How can I help you today?",
+        "how are you": "I'm just a chatbot, but I'm doing great! How about you?",
+        "bye": "Goodbye! Have a great day!",
+        "default": "Sorry, I didn't understand that."
+    };
+
     sendButton.addEventListener('click', () => {
-        const message = chatInput.value;
-        if (message.trim()) {
+        const message = formatMessage(chatInput.value);
+        if (message) {
             appendMessage('You', message);
             chatInput.value = '';
-            simulateBotResponse(message);
+            const response = getResponse(message);
+            setTimeout(() => appendMessage('Bot', response), 1000);
         }
     });
 
@@ -21,10 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         chatOutput.scrollTop = chatOutput.scrollHeight;
     }
 
-    function simulateBotResponse(userMessage) {
-        setTimeout(() => {
-            const response = `Bot response to "${userMessage}"`; // Simulated response
-            appendMessage('Bot', response);
-        }, 1000);
+    function getResponse(message) {
+        return responses[message] || responses["default"];
+    }
+
+    function formatMessage(message) {
+        // Chuyển văn bản thành chữ thường và loại bỏ các ký tự không cần thiết
+        return message.toLowerCase().replace(/[\'\"\!\.\,\?]/g, '').trim();
     }
 });
