@@ -33,22 +33,24 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+.chat-input-container {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
 .chat-input {
+    flex: 1;
     padding: 10px;
     border: none;
-    border-top: 1px solid #ddd;
-    width: calc(100% - 90px);
     box-sizing: border-box;
 }
 
 #send-button {
-    width: 80px;
     border: none;
     background-color: #007bff;
     color: #fff;
     padding: 10px;
     cursor: pointer;
-    border-radius: 0 0 8px 8px;
 }
 
 #send-button:hover {
