@@ -12,12 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     sendButton.addEventListener('click', () => {
-        const message = formatMessage(chatInput.value);
-        if (message) {
-            appendMessage('You', chatInput.value); // Show the original user message
+        const originalMessage = chatInput.value.trim();
+        const formattedMessage = formatMessage(originalMessage);
+
+        if (originalMessage) {
+            appendMessage('You', originalMessage); // Show the original user message
             chatInput.value = '';
-            const response = getResponse(message);
-            setTimeout(() => appendMessage('Bot', `Bot response to "${chatInput.value}"`), 1000); // Show the formatted response
+
+            // Get and format the response
+            const response = getResponse(formattedMessage);
+            setTimeout(() => appendMessage('Bot', response), 1000);
         }
     });
 
@@ -30,10 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getResponse(message) {
+        // Return response based on formatted message
         return responses[message] || responses["default"];
     }
 
     function formatMessage(message) {
+        // Convert to lowercase and remove punctuation
         return message.toLowerCase().replace(/[\'\"\!\.\,\?]/g, '').trim();
     }
 });
