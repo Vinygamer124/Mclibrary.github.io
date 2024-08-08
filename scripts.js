@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     sendButton.addEventListener('click', () => {
         const message = formatMessage(chatInput.value);
         if (message) {
-            appendMessage('You', message);
+            appendMessage('You', chatInput.value); // Show the original user message
             chatInput.value = '';
             const response = getResponse(message);
-            setTimeout(() => appendMessage('Bot', response), 1000);
+            setTimeout(() => appendMessage('Bot', `Bot response to "${chatInput.value}"`), 1000); // Show the formatted response
         }
     });
 
@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function formatMessage(message) {
-        // Chuyển văn bản thành chữ thường và loại bỏ các ký tự không cần thiết
         return message.toLowerCase().replace(/[\'\"\!\.\,\?]/g, '').trim();
     }
 });
