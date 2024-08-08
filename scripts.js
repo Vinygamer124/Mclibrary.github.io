@@ -4,7 +4,7 @@ document.getElementById('send').addEventListener('click', function() {
 
     // Display user message
     addMessage('user-message', userInput);
-    
+
     // Simulate bot response
     setTimeout(() => {
         const botResponse = getBotResponse(userInput);
@@ -21,7 +21,7 @@ function addMessage(className, message) {
     messageElement.className = `message ${className}`;
     messageElement.textContent = message;
     document.getElementById('chatlog').appendChild(messageElement);
-    
+
     // Scroll to the bottom of chatlog
     const chatlog = document.getElementById('chatlog');
     chatlog.scrollTop = chatlog.scrollHeight;
