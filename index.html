@@ -3,35 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command Block MCPE</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <h1>Welcome to Command Block MCPE</h1>
-        <p>Learn everything about command blocks in Minecraft Pocket Edition.</p>
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Command Block MCPE</p>
-    </footer>
-<header>
-    <div class="menu-toggle">☰</div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="commands.html">Commands</a></li>
-            <li><a href="id-command.html">ID Command</a></li>
-            <li><a href="web-tool.html">Web Tool</a></li>
-        </ul>
-    </nav>
-</header>
+    <div id="chatbox">
+        <div id="chatlog"></div>
+        <textarea id="userinput" placeholder="Type your message here..."></textarea>
+        <button id="send">Send</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
