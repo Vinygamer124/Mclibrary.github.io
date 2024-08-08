@@ -1,5 +1,8 @@
 document.getElementById('send').addEventListener('click', function() {
     const userInput = document.getElementById('userinput').value.trim();
+    console.log('Send button clicked'); // Kiểm tra xem nút có được nhấn không
+    console.log('User input:', userInput); // Kiểm tra dữ liệu đầu vào
+
     if (userInput === '') return;
 
     // Display user message
