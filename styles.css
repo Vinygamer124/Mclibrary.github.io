@@ -1,72 +1,30 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* CSS cho phần menu */
+header nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+header nav ul li {
+    margin-right: 15px;
+}
+
+header nav ul li a {
+    text-decoration: none;
     color: #333;
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 10px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-}
-
-main {
-    padding: 20px;
-}
-
-#forum {
-    margin-top: 40px;
-}
-
-#forum h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-body.dark-mode {
-    background-color: #333;
-    color: #f4f4f4;
-}
-
-header.dark-mode {
-    background-color: #555;
-}
-
-button#theme-toggle {
-    margin-top: 10px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #4CAF50;
-    color: white;
-}
-
-footer a {
-    margin: 0 10px;
-}
-
-footer img {
-    width: 30px;
-    height: 30px;
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+    
+    .menu-toggle.active + ul {
+        display: flex;
+    }
 }
