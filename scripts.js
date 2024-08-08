@@ -1,39 +1,30 @@
-document.getElementById('send').addEventListener('click', function() {
-    const userInput = document.getElementById('userinput').value.trim();
-    console.log('Send button clicked'); // Kiểm tra xem nút có được nhấn không
-    console.log('User input:', userInput); // Kiểm tra dữ liệu đầu vào
+// scripts.js
+document.addEventListener('DOMContentLoaded', () => {
+    const chatInput = document.getElementById('chat-input');
+    const chatOutput = document.getElementById('chat-output');
+    const sendButton = document.getElementById('send-button');
 
-    if (userInput === '') return;
+    sendButton.addEventListener('click', () => {
+        const message = chatInput.value;
+        if (message.trim()) {
+            appendMessage('You', message);
+            chatInput.value = '';
+            simulateBotResponse(message);
+        }
+    });
 
-    // Display user message
-    addMessage('user-message', userInput);
-
-    // Simulate bot response
-    setTimeout(() => {
-        const botResponse = getBotResponse(userInput);
-        addMessage('bot-message', botResponse);
-    }, 1000);
-
-    // Clear input field and keep focus
-    document.getElementById('userinput').value = '';
-    document.getElementById('userinput').focus();
-});
-
-function addMessage(className, message) {
-    const messageElement = document.createElement('div');
-    messageElement.className = `message ${className}`;
-    messageElement.textContent = message;
-    document.getElementById('chatlog').appendChild(messageElement);
-
-    // Scroll to the bottom of chatlog
-    const chatlog = document.getElementById('chatlog');
-    chatlog.scrollTop = chatlog.scrollHeight;
-}
-
-function getBotResponse(userInput) {
-    // Basic bot logic
-    if (userInput.toLowerCase().includes('hello')) {
-        return 'Hello! How can I help you today?';
+    function appendMessage(sender, text) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message';
+        messageElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
+        chatOutput.appendChild(messageElement);
+        chatOutput.scrollTop = chatOutput.scrollHeight;
     }
-    return 'Sorry, I did not understand that.';
-}
+
+    function simulateBotResponse(userMessage) {
+        setTimeout(() => {
+            const response = `Bot response to "${userMessage}"`; // Simulated response
+            appendMessage('Bot', response);
+        }, 1000);
+    }
+});
