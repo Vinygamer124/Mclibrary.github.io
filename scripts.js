@@ -1,6 +1,6 @@
 document.getElementById('send').addEventListener('click', function() {
-    const userInput = document.getElementById('userinput').value;
-    if (userInput.trim() === '') return;
+    const userInput = document.getElementById('userinput').value.trim();
+    if (userInput === '') return;
 
     // Display user message
     addMessage('user-message', userInput);
@@ -11,7 +11,9 @@ document.getElementById('send').addEventListener('click', function() {
         addMessage('bot-message', botResponse);
     }, 1000);
 
+    // Clear input field and keep focus
     document.getElementById('userinput').value = '';
+    document.getElementById('userinput').focus();
 });
 
 function addMessage(className, message) {
@@ -19,7 +21,10 @@ function addMessage(className, message) {
     messageElement.className = `message ${className}`;
     messageElement.textContent = message;
     document.getElementById('chatlog').appendChild(messageElement);
-    document.getElementById('chatlog').scrollTop = document.getElementById('chatlog').scrollHeight;
+    
+    // Scroll to the bottom of chatlog
+    const chatlog = document.getElementById('chatlog');
+    chatlog.scrollTop = chatlog.scrollHeight;
 }
 
 function getBotResponse(userInput) {
