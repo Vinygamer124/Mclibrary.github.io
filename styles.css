@@ -26,6 +26,11 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+#inputarea {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
 #userinput {
     width: calc(100% - 50px);
     height: 50px;
