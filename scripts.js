@@ -8,12 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
         "hello": "Hi there! How can I help you today?",
         "how are you": "I'm just a chatbot, but I'm doing great! How about you?",
         "bye": "Goodbye! Have a great day!",
-        "default": "Sorry, I didn't understand that.",
-        "what is minecraft": "Minecraft is a sandbox video game where players can build, explore, and interact with a 3D world made up of blocks. It offers various modes, including survival and creative, allowing for diverse gameplay experiences.",
-        "whats minecraft": "Minecraft is a sandbox video game where players can build, explore, and interact with a 3D world made up of blocks. It offers various modes, including survival and creative, allowing for diverse gameplay experiences."
+        "weather": "I'm not sure about the weather, but you can check online!",
+        "name": "I'm just a humble chatbot with no name."
     };
 
-    // Event listener for the send button
     sendButton.addEventListener('click', () => {
         const originalMessage = chatInput.value.trim();
         const formattedMessage = formatMessage(originalMessage);
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Function to append a message to the chat output
     function appendMessage(sender, text) {
         const messageElement = document.createElement('div');
         messageElement.className = 'message';
@@ -37,13 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
         chatOutput.scrollTop = chatOutput.scrollHeight;
     }
 
-    // Function to get the response based on the message
     function getResponse(message) {
-        return responses[message] || responses["default"];
+        // Example of a simple keyword-based NLP
+        if (message.includes("weather")) {
+            return responses["weather"];
+        } else if (message.includes("name")) {
+            return responses["name"];
+        } else if (responses[message]) {
+            return responses[message];
+        } else {
+            return "Sorry, I didn't understand that.";
+        }
     }
 
-    // Function to format the message
     function formatMessage(message) {
-        return message.toLowerCase().replace(/[\'\"\!\.\,\?\s]/g, ' ').trim();
+        return message.toLowerCase().replace(/[\'\"\!\.\,\?]/g, '').trim();
     }
 });
