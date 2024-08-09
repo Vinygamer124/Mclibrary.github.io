@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "default": "Sorry, I didn't understand that."
     };
 
+    // Event listener for the send button
     sendButton.addEventListener('click', () => {
         const originalMessage = chatInput.value.trim();
         const formattedMessage = formatMessage(originalMessage);
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Function to append a message to the chat output
     function appendMessage(sender, text) {
         const messageElement = document.createElement('div');
         messageElement.className = 'message';
@@ -33,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
         chatOutput.scrollTop = chatOutput.scrollHeight;
     }
 
+    // Function to get the response based on the message
     function getResponse(message) {
-        // Return response based on formatted message
         return responses[message] || responses["default"];
     }
 
+    // Function to format the message
     function formatMessage(message) {
-        // Convert to lowercase and remove punctuation
         return message.toLowerCase().replace(/[\'\"\!\.\,\?]/g, '').trim();
     }
 });
