@@ -36,6 +36,7 @@ body {
 .chat-input-container {
     display: flex;
     border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
 }
 
 .chat-input {
@@ -43,6 +44,7 @@ body {
     padding: 10px;
     border: none;
     box-sizing: border-box;
+    border-radius: 0;
 }
 
 #send-button {
@@ -51,6 +53,7 @@ body {
     color: #fff;
     padding: 10px;
     cursor: pointer;
+    border-radius: 0;
 }
 
 #send-button:hover {
