@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "bye": "Goodbye! Have a great day!",
         "default": "Sorry, I didn't understand that.",
         "what is minecraft": "Minecraft is a sandbox video game where players can build, explore, and interact with a 3D world made up of blocks. It offers various modes, including survival and creative, allowing for diverse gameplay experiences.",
-        "what's minecraft": "Minecraft is a sandbox video game where players can build, explore, and interact with a 3D world made up of blocks. It offers various modes, including survival and creative, allowing for diverse gameplay experiences."
+        "whats minecraft": "Minecraft is a sandbox video game where players can build, explore, and interact with a 3D world made up of blocks. It offers various modes, including survival and creative, allowing for diverse gameplay experiences."
     };
 
     // Event listener for the send button
@@ -44,6 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to format the message
     function formatMessage(message) {
-        return message.toLowerCase().replace(/[\'\"\!\.\,\?]/g, '').trim();
+        return message.toLowerCase().replace(/[\'\"\!\.\,\?\s]/g, ' ').trim();
     }
 });
